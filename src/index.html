@@ -1,26 +1,239 @@
-<!DOCTYPE html>
+<!doctype>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <style type='text/css'></style>
-  <script type='text/javascript'></script>
-  <body>
-    <h1>Users</h1>
-    <table>
-      <thead>
-        <th>&nbsp;</th>
-        <th>ID</th>
-        <th>First</th>
-        <th>Last</th>
-        <th>test</th>
+    <title>Test Isotope</title>
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+  <style>
+* { box-sizing: border-box; }
 
-      </thead>
-      <tbody id='users'>
+body {
+  font-family: sans-serif;
+}
 
-      </tbody>
-    </table>
-    <script src='bundle.js'></script>
+/* ---- button ---- */
+
+.button {
+  display: inline-block;
+  padding: 10px 18px;
+  margin-bottom: 10px;
+  background: #EEE;
+  border: none;
+  border-radius: 7px;
+  background-image: linear-gradient( to bottom, hsla(0, 0%, 0%, 0), hsla(0, 0%, 0%, 0.2) );
+  color: #222;
+  font-family: sans-serif;
+  font-size: 16px;
+  text-shadow: 0 1px white;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #8CF;
+  text-shadow: 0 1px hsla(0, 0%, 100%, 0.5);
+  color: #222;
+}
+
+.button:active,
+.button.is-checked {
+  background-color: #28F;
+}
+
+.button.is-checked {
+  color: white;
+  text-shadow: 0 -1px hsla(0, 0%, 0%, 0.8);
+}
+
+.button:active {
+  box-shadow: inset 0 1px 10px hsla(0, 0%, 0%, 0.8);
+}
+
+/* ---- button-group ---- */
+
+.button-group:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.button-group .button {
+  float: left;
+  border-radius: 0;
+  margin-left: 0;
+  margin-right: 1px;
+}
+
+.button-group .button:first-child { border-radius: 0.5em 0 0 0.5em; }
+.button-group .button:last-child { border-radius: 0 0.5em 0.5em 0; }
+
+/* ---- isotope ---- */
+
+.grid {
+  border: 1px solid #333;
+  max-width: 800px;
+}
+
+/* clear fix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- .element-item ---- */
+
+.element-item {
+  /* position: relative; */
+  float: left;
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  padding: 10px;
+  background: #888;
+  color: #262524;
+}
+
+.element-item--height2 {
+  height: 200px;
+}
+
+.element-item--height3 {
+  height: 350px;
+}
+
+.element-item > * {
+  margin: 0;
+  padding: 0;
+}
+
+.element-item .name {
+  position: absolute;
+
+  left: 10px;
+  top: 60px;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.element-item .symbol {
+  position: absolute;
+  left: 10px;
+  top: 0px;
+  font-size: 42px;
+  font-weight: bold;
+  color: white;
+}
+
+.element-item .number {
+  position: absolute;
+  right: 8px;
+  top: 5px;
+}
+
+.element-item .weight {
+  position: absolute;
+  left: 10px;
+  top: 76px;
+  font-size: 12px;
+}
+
+.element-item.alkali          { background: #F00; background: hsl(   0, 100%, 50%); }
+.element-item.alkaline-earth  { background: #F80; background: hsl(  36, 100%, 50%); }
+.element-item.lanthanoid      { background: #FF0; background: hsl(  72, 100%, 50%); }
+.element-item.actinoid        { background: #0F0; background: hsl( 108, 100%, 50%); }
+.element-item.transition      { background: #0F8; background: hsl( 144, 100%, 50%); }
+.element-item.post-transition { background: #0FF; background: hsl( 180, 100%, 50%); }
+.element-item.metalloid       { background: #08F; background: hsl( 216, 100%, 50%); }
+.element-item.diatomic        { background: #00F; background: hsl( 252, 100%, 50%); }
+.element-item.halogen         { background: #F0F; background: hsl( 288, 100%, 50%); }
+.element-item.noble-gas       { background: #F08; background: hsl( 324, 100%, 50%); }
+
+  </style>
+</head>
+<body>
+
+<h1>Isotope - filtering</h1>
+
+<div class="button-group filters-button-group">
+  <button  onclick="myFunction()" class="button is-checked" data-filter="*">show all</button>
+  <button class="button" data-filter=".Caregiver">Caregiver</button>
+  <button class="button" data-filter=".Supporter">Supporter</button>
+  <button class="button" data-filter=".Patient">Patient</button>
+</div>
+
+<div class="grid">
+  <div class="element-item transition metal element-item--height3 " data-category="transition">
+    <h3 class="name">Mercury</h3>
+    <p class="symbol">Hg</p>
+    <p class="number">1</p>
+    <p class="weight">200.59</p>
+  </div>
+  <div class="element-item metalloid  element-item--height2" data-category="metalloid">
+    <h3 class="name">Tellurium</h3>
+    <p class="symbol">Te</p>
+    <p class="number">2</p>
+    <p class="weight">127.6</p>
+  </div>
+  <div class="element-item post-transition metal element-item--height3 " data-category="post-transition">
+    <h3 class="name">Bismuth</h3>
+    <p class="symbol">Bi</p>
+    <p class="number">3</p>
+    <p class="weight">208.980</p>
+  </div>
+  <div class="element-item post-transition metal element-item--height3" data-category="post-transition">
+    <h3 class="name">Lead</h3>
+    <p class="symbol">Pb</p>
+    <p class="number">4</p>
+    <p class="weight">207.2</p>
+  </div>
+  <div class="element-item transition metal element-item--height2" data-category="transition">
+    <h3 class="name">Gold</h3>
+    <p class="symbol">Au</p>
+    <p class="number">5</p>
+    <p class="weight">196.967</p>
+  </div>
+  <div class="element-item alkali metal element-item--height2" data-category="alkali">
+    <h3 class="name">Potassium</h3>
+    <p class="symbol">K</p>
+    <p class="number">6</p>
+    <p class="weight">39.0983</p>
+  </div>
+  <div class="element-item alkali metal element-item--height2" data-category="alkali">
+    <h3 class="name">Sodium</h3>
+    <p class="symbol">Na</p>
+    <p class="number">7</p>
+    <p class="weight">22.99</p>
+  </div>
+  <div class="element-item transition metal element-item--height3" data-category="transition">
+    <h3 class="name">Cadmium</h3>
+    <p class="symbol">Cd</p>
+    <p class="number">8</p>
+    <p class="weight">112.411</p>
+  </div>
+  <div class="element-item alkaline-earth metal element-item--height2" data-category="alkaline-earth">
+    <h3 class="name">Calcium</h3>
+    <p class="symbol">Ca</p>
+    <p class="number">9</p>
+    <p class="weight">40.078</p>
+  </div>
+</div>
+
+<script>
+// external js: isotope.pkgd.js
+
+// init Isotope
+var iso = new Isotope( '.grid', {
+  itemSelector: '.element-item',
+  masonry: {
+  columnWidth: 100
+}
+});
+
+// filter functions
+dww
+
+  </script>
+
   </body>
 </html>

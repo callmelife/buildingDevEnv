@@ -5,19 +5,17 @@
 // const courseValue = numeral(1000).format('$0,0.00');
 
 // console.log(`I would pay ${courseValue} for this awesome course`);
-// import $ from 'jquery';
+import $ from 'jquery';
 
 import {getUsers, deleteUser} from './api/userApi';
 
 // main.js
 
-var $ = require('jquery');
-var jQueryBridget = require('jquery-bridget');
+var elem = document.querySelector('.grid');
+
 var Isotope = require('isotope-layout');
-// make Isotope a jQuery plugin
-jQueryBridget( 'isotope', Isotope, $ );
-// now you can use $().isotope()
-$('.grid').isotope({
+
+var iso = new Isotope( '.grid', {
   itemSelector: '.grid-item',
   masonry: {
     columnWidth: 100

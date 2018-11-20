@@ -1,7 +1,46 @@
 body {
   font-family: sans-serif;
+  background-color: blue;
 }
 
 table th {
   padding: 5px;
 }
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: sans-serif;
+  background-color: blue;
+}
+
+/* ---- grid ---- */
+
+.grid {
+  background: #DDD;
+  max-width: 1200px;
+  max-height: 1200px;
+}
+
+/* clear fix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- .grid-item ---- */
+
+.grid-item {
+  float: left;
+  width: 100px;
+  height: 100px;
+  background: blue;
+  margin: 5px;
+  border: 2px solid #333;
+
+
+}
+
+.grid-item--width2 { width: 200px; }
+.grid-item--height2 { height: 200px; }
